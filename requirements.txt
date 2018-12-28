@@ -4,6 +4,7 @@ SQLAlchemy
 Flask-SQLAlchemy
 # utils
 validate_email
+flask-bcrypt
 # Deployment
 gunicorn
 psycopg2-binary

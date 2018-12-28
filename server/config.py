@@ -4,6 +4,7 @@ import os
 class Config(object):
     DEBUG = False
     TESTING = False
+    BCRYPT_LOG_ROUNDS = 15
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class Development(Config):
