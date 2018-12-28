@@ -22,7 +22,7 @@ class DatabaseTest(TestCase):
         profile = models.Profile.query.filter_by(name='John Doe').first()
         return ( user, profile )
 
-    ''' Ensure server does not persist plain text password and auth '''
+    ''' Ensure server does not persist plain text password and auth interface is cryptographically enforced '''
     def test_user_select(self):
         user, _ = self.get_sample_set()
         assert user.password != 'password'
