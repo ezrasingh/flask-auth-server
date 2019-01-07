@@ -5,4 +5,5 @@ from server import db, models, config, create_app
 def generate_test_env():
     app = create_app(mode=config.Testing)
     ctx = app.app_context()
-    return ( app, ctx )
+    client = app.test_client()
+    return ( app, ctx, client )
