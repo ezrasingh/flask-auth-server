@@ -22,10 +22,12 @@ class DatabaseTest(TestCase):
         profile = models.Profile.query.filter_by(name='John Doe').first()
         return ( user, profile )
 
-    ''' Ensure server does not persist plain text password and auth interface is cryptographically enforced '''
-    def test_user_select(self):
+    ''' Ensure users are protected while persisted '''
+    def test_user_security(self):
         user, _ = self.get_sample_set()
+        # ensure passwords are not stored in plain text
         assert user.password != 'password'
+        # ensure passwords are cryptographically enforced
         assert user.authorize('password')
     
     ''' Check for schema enforced one-to-one relationship '''
