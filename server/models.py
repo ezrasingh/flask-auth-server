@@ -33,7 +33,7 @@ class User(db.Model):
     def active(self):
         return bool(self.profile_id)
 
-    ''' Remove profile association on account '''
+    ''' Dereference profile from account '''
     @hybrid_method
     def deactivate(self):
         self.profile_id = None
