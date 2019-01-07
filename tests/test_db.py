@@ -39,5 +39,7 @@ class DatabaseTest(TestCase):
     def test_user_active(self):
         user = models.User.query.filter_by(email='test@user.com').first()
         assert user.active
+        user.deactivate()
+        assert not user.active
         user = models.User.query.filter_by(email='test2@user.com').first()
         assert not user.active
