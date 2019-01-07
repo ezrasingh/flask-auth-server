@@ -34,3 +34,10 @@ class DatabaseTest(TestCase):
     def test_user_profile_relation(self):
         user, profile = self.get_sample_set()
         assert user.profile.id == profile.id
+    
+    ''' Validate that active hybrid property functions correctly '''
+    def test_user_active(self):
+        user = models.User.query.filter_by(email='test@user.com').first()
+        assert user.active
+        user = models.User.query.filter_by(email='test2@user.com').first()
+        assert not user.active
