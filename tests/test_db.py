@@ -10,10 +10,10 @@ class DatabaseTest(TestCase):
         self.ctx.push()
         populate(db.session)
     
+    ''' Shutdown context and purge database '''
     def tearDown(self):
         db.session.remove()
         db.drop_all()
-        # Close testing context
         self.ctx.pop()
     
     ''' Query sample set from database '''
