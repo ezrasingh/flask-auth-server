@@ -38,7 +38,7 @@ class User(db.Model):
         self.password = password
 
     def __repr__(self):
-        return "<User {}:{}>".format(self.id, self.email)
+        return "<User {}:{} profile={}>".format(self.id, self.email, self.profile_id)
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
