@@ -28,6 +28,11 @@ class User(db.Model):
         assert validate_email(address)
         return address
     
+    ''' A user without a profile is considered inactive '''
+    @hybrid_property
+    def active(self):
+        return bool(self.profile_id)
+
     def __init__(self, email, password):
         self.email = email
         self.password = password
