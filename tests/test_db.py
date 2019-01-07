@@ -5,7 +5,7 @@ from tests.utils import populate
 
 class DatabaseTest(TestCase):
     def setUp(self):
-        _, self.ctx = generate_test_env()
+        app, self.ctx, client = generate_test_env()
         # Initialize context for db testing
         self.ctx.push()
         populate(db.session)
