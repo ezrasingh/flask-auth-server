@@ -2,9 +2,11 @@
 Flask
 SQLAlchemy
 Flask-SQLAlchemy
+Flask-Migrate
 # utils
 validate_email
-flask-bcrypt
+flask-restful
+flask-security
 # Deployment
 gunicorn
 psycopg2-binary
