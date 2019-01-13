@@ -3,6 +3,8 @@ Flask
 SQLAlchemy
 Flask-SQLAlchemy
 Flask-Migrate
+# Testing
+pytest
 # utils
 python-dotenv
 validate_email
