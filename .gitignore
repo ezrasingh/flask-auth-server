@@ -2,6 +2,7 @@
 __pycache__/
 *.[pyc]
 *.sqlite3*
+*.pytest_cache/
 
 # IDE
 .vscode/
