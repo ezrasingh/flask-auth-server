@@ -2,7 +2,9 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# Development only
+if 'production' not in os.environ:
+    load_dotenv()
 
 class Config(object):
     DEBUG = False

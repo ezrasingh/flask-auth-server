@@ -4,6 +4,7 @@ SQLAlchemy
 Flask-SQLAlchemy
 Flask-Migrate
 # utils
+python-dotenv
 validate_email
 flask-restful
 flask-security
