@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-import pytest
+import pytest, os
 from server import create_app, config
 from server.resources import db
 
-app = create_app(mode=config.Testing)
+if os.getenv('MODE') == 'staging':
+    app = create_app(mode=config.Staging)
+else:
+    app = create_app(mode=config.Testing)
 
 @pytest.fixture(scope='module')
 def test_user():

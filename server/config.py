@@ -24,6 +24,10 @@ class Testing(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
+# For use with Docker
+class Staging(Config):
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+
 # For use with Heroku
 class Production(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
