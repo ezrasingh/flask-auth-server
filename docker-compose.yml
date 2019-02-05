@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    tty: true
+    build: .
+    restart: always
+    command: flask run --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      MODE: staging
+      DATABASE_URL: postgresql+psycopg2://admin:password@db:5432/staging
+      PASSWORD_SALT: ^CPe?g2&GQ
+      SECRET_KEY: bH?UuPg5#9E%S?q2pD25!$EE84_Qq%DU
+      CLIENT_ORIGIN: 
+  db:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: staging
