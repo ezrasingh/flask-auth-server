@@ -3,7 +3,7 @@ from server.resources import api, user_store, db, errors
 from server.resources.models import Profile
 from server.resources.utils import user_is_active, login_required
 from flask_restful import Resource, reqparse
-from flask_security import current_user
+from flask_security import current_user, auth_token_required
 from flask_security.utils import logout_user
 
 @api.resource('/user', endpoint='user')
@@ -25,7 +25,7 @@ class User(Resource):
         self.parser['put'].add_argument('name', help='User\'s name')
 
     ''' Request user's profile '''
-    @login_required
+    @auth_token_required
     @user_is_active
     def get(self):
         user = { 'email' : current_user.email, 'profile' : None }
@@ -52,7 +52,7 @@ class User(Resource):
             return errors.UserCreationFailure()
 
     ''' Update user's profiles '''
-    @login_required
+    @auth_token_required
     @user_is_active
     def put(self):
         # TODO: Refactor this into a toggle user active flag
@@ -64,7 +64,7 @@ class User(Resource):
         return { 'message' : 'Profile updated' }
 
     ''' Deactivate user account '''
-    @login_required
+    @auth_token_required
     @user_is_active
     def delete(self):
         current_user.active = False

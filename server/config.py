@@ -2,17 +2,19 @@
 import os
 from dotenv import load_dotenv
 
-# Development only
-if 'production' not in os.environ:
+if not os.getenv('MODE'):
     load_dotenv()
 
 class Config(object):
     DEBUG = False
     TESTING = False
+    WTF_CSRF_ENABLED = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.getenv('SECRET_KEY')
     SECURITY_PASSWORD_HASH = 'bcrypt'
+    SECRET_KEY = os.getenv('SECRET_KEY')
     SECURITY_PASSWORD_SALT = os.getenv('PASSWORD_SALT')
+    SECURITY_TOKEN_AUTHENTICATION_HEADER = 'Authorization'
+
 
 class Development(Config):
     DEBUG = True
@@ -20,11 +22,8 @@ class Development(Config):
 
 class Testing(Config):
     TESTING = True
-    WTF_CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 # For use with Heroku
 class Production(Config):
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    SECURITY_PASSWORD_SALT = os.getenv('PASSWORD_SALT')
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')

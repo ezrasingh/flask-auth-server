@@ -2,7 +2,7 @@
 from server.resources import api, user_store, db, errors
 from server.resources.utils import login_required
 from flask_restful import Resource, reqparse
-from flask_security import current_user
+from flask_security import current_user, auth_token_required
 from flask_security.utils import login_user, logout_user
 
 '''  Login with identity and credentials '''
@@ -15,7 +15,7 @@ def login(email, password, remember=False):
         user.active = True
         db.session.commit()
     login_user(user, remember=remember)
-    return { 'message' : 'Login successful' }
+    return { 'token' : user.get_auth_token() }
 
 @api.resource('/authenticate', endpoint='auth')
 class Authentication(Resource):
@@ -32,16 +32,14 @@ class Authentication(Resource):
         self.parser['post'].add_argument('password', required=True, help='Password is required')
         self.parser['post'].add_argument('remember', type=bool)
 
-    ''' Establish user session '''
+    ''' Refresh auth token '''
+    @auth_token_required
+    def get(self):
+        return { 'token' : current_user.get_auth_token() }
+
+    ''' Issue new token, with user credentials '''
     def post(self):
-        if current_user.is_authenticated:
-            return errors.UserAlreadyAuthenticated()
         args = self.parser['post'].parse_args()
         return login(**args)
         
-
-    @login_required
-    def delete(self):
-        logout_user()
-        return { 'message': 'Logout OK' }
         
