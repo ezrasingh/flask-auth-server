@@ -6,10 +6,12 @@ Flask-Migrate
 # Testing
 pytest
 # utils
+bcrypt
 python-dotenv
 validate_email
 flask-restful
 flask-security
+flask-cors
 # Deployment
 gunicorn
-psycopg2-binary
+psycopg2
