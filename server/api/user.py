@@ -28,7 +28,7 @@ class User(Resource):
     @auth_token_required
     @user_is_active
     def get(self):
-        user = { 'email' : current_user.email, 'profile' : None }
+        user = { 'email' : current_user.email, 'profile' : {} }
         if current_user.profile:
             user['profile'] = { 'name' : current_user.profile.name }
         return user
