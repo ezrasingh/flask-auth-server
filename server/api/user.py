@@ -20,7 +20,7 @@ class User(Resource):
         # POST parser arguments
         self.parser['post'].add_argument('email', required=True, help='Email is required')
         self.parser['post'].add_argument('password', required=True,help='Password is required')
-        self.parser['post'].add_argument('confirm', default=False, help='Confirm the password')
+        self.parser['post'].add_argument('confirm', required=True, help='Confirm the password')
         # PUT parser arguments
         self.parser['put'].add_argument('name', help='User\'s name')
 
