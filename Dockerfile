@@ -6,7 +6,7 @@ WORKDIR /usr/src
 FROM Base as Installer
 
 RUN \
-    apk add --no-cache postgresql-libs && \
+    apk add --no-cache libffi-dev postgresql-libs && \
     apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev
 
 COPY requirements.txt /usr/src
