@@ -1,19 +1,19 @@
 # Flask Auth Server (REST)
 
-This project is designed to be an *Identity Access Management* (IAM) solution focused around **session based** authentication and authorization. The goal of this software is to securely provide access to protected user resources over a REST API.
+This project is designed to be an *Identity Access Management* (IAM) solution focused around **token based** authentication and authorization. The goal of this software is to securely provide access to protected user resources over a REST API.
 
 ### API Endpoints
 
 - */api/authenticate*
+    - **GET** - Refresh authorization token *
     - **POST** - Login with identity and credentials
-    - **DELETE** - Dereference current session *
 - */api/user*
     - **GET** - Request user's profile *
     - **POST** - Create a new user
     - **PUT** - Update user's profiles *
     - **DELETE** - Deactivate user account
 
-`* - Requires authentication`
+`* - Requires authentication via JWT`
 
 ## Development
 I would recommend developing within a **virtualenv** preferably via *[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)*.
@@ -44,28 +44,34 @@ Upgrade and downgrade the schema using:
 
 ## Staging
 
-* [Docker](#) is required for staging
+* [Docker](https://www.docker.com/get-started) is required for staging
 
-Build and start the staging environment using:
+Build or start the staging environment using:
 
 `docker-compose up --build`
 
 `docker-compose up`
 
+**NOTE** :
+*Staging is the preferred environment for frontend development*
+
 ### Running in Windows
 
-Docker on windows utilizes a [local virtual machine](https://docs.docker.com/machine/get-started/) for networking, this can make accessing exposed ports difficult. First, locate the IP address assigned to the container via the virtual network driver:
+Docker on windows utilizes a [local virtual machine](https://docs.docker.com/machine/get-started/) for networking, this can make accessing exposed ports difficult. First, start the virtual host then locate the host's IP address:
+
+`docker-machine start`
+
+`echo %DOCKER_HOST%`
+
+If you are using [MinGW](http://www.mingw.org/) or happen to have `grep` installed, run the following command after starting the host.
 
 `docker-machine inspect | grep IPAddress`
 
-Then, test the access to container, after booting up `docker-compose` use the IP address from the previous step:
+Then, test the access to container, after `docker-compose up` use the IP address from the previous step:
 
 `curl http://<docker-machine-ip>:5000/api/profile`
 
 You should receive a JSON response from the Dockerized API.
-
-**NOTE** :
-*Staging is the preferred environment for frontend development*
 
 ## Deploy
 
