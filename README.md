@@ -75,6 +75,8 @@ You should receive a JSON response from the Dockerized API.
 
 ## Deploy
 
+* This codebase supports deployment over [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
