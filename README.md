@@ -32,9 +32,11 @@ Install application dependencies:
 
 `pip install -r requirements.txt`
 
-Run coverage tests:
+Run tests:
 
-`python -m pytest tests/`
+`python -m pytest tests/ --disable-warnings`
+
+* *Disabling warnings is optional*
 
 Start application in development mode:
 
@@ -42,9 +44,13 @@ Start application in development mode:
 
 ### Migrations
 
-Generate migrations:
+Initialize database migrations:
 
 `flask db init`
+
+Generate new migrations:
+
+`flask db migrate`
 
 Upgrade and downgrade the schema using:
 
@@ -80,7 +86,7 @@ Build or start the staging environment using:
 `docker-compose up`
 
 **NOTE** :
-*Staging is the preferred environment for frontend development*
+*Staging is the preferred environment for frontend development, be sure to configure **CLIENT_ORIGIN** in [`docker-compose.yml`](docker-compose.yml)*.
 
 ### Running in Windows
 
