@@ -1,0 +1,625 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2019-03-11T07:52:17.971Z",
+	"__export_source": "insomnia.desktop.app:v6.3.2",
+	"resources": [
+		{
+			"_id": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"created": 1552247709289,
+			"description": "This project is designed to be an *Identity Access Management* (IAM) solution focused around **token based** authentication and authorization. The goal of this software is to securely provide access to protected user resources over a REST API.",
+			"modified": 1552264927763,
+			"name": "Flask Auth",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_d094f08a782d4e48868e635aa9f0678d",
+			"color": null,
+			"created": 1552247709309,
+			"data": {
+				"auth_endpoint": "/auth",
+				"user": {
+					"email": "tester@user.com",
+					"name": "John Doe",
+					"password": "letmein"
+				},
+				"user_endpoint": "/user",
+				"validate_endpoint": "/validate"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1552247709309,
+			"modified": 1552248574056,
+			"name": "New Environment",
+			"parentId": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_c665ae3ef39a4ad4a8ae0b4b46218e21",
+			"cookies": [
+				{
+					"creation": "2019-03-10T23:56:32.512Z",
+					"domain": "127.0.0.1",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "02761528431277882",
+					"key": "session",
+					"lastAccessed": "2019-03-11T07:51:43.951Z",
+					"path": "/",
+					"value": ".eJwFwYENQyEIBcBdnACeIPKX-RGQpDM03b133_F-ajwDGbtx83RaqzUZWISiVp7w9LVvMeZhSFzyuLYt1TIq4cpFS6NAq8ln9yQLqDpzMEB7nr5TiXGORIvkdNROISIsrd53_P6M4iX7.XIYTjw.xDYwk3pQks6pwQtN4Pe7x0PTUlc"
+				}
+			],
+			"created": 1552247709321,
+			"modified": 1552290703951,
+			"name": "Default Jar",
+			"parentId": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"created": 1552248054331,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1552248065376,
+			"modified": 1552248068132,
+			"name": "Authentication",
+			"parentId": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"created": 1552248059346,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1552248065351,
+			"modified": 1552248069835,
+			"name": "User",
+			"parentId": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_b3cfb5298cd2409b89103a4d23fff717",
+			"created": 1552248065326,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1552248065326,
+			"modified": 1552248065326,
+			"name": "Validation",
+			"parentId": "wrk_15afc4b18c014d04a287fab70b8d19e6",
+			"_type": "request_group"
+		},
+		{
+			"_id": "env_61155db79a7a417c89ee1be44720156a",
+			"color": "#7d69cb",
+			"created": 1552248554965,
+			"data": {
+				"auth_token": "WyIxIiwiJDUkcm91bmRzPTUzNTAwMCRaWjlIR29IcU9NUjd0bUcuJE9xenZxTTk1NlouLlkvcTI0S0liUzVBcU9NTHJic2VtVUlLU01uYTZoUzkiXQ.XIYTSA.ELEE-Az5Y2Y-73jthwTu2mk03is",
+				"base_url": "http://127.0.0.1:5000/api",
+				"validation_token": "InRlc3RlckB1c2VyLmNvbSI.XIYOXA.yuf22wjI75gnzR_e5QNKen7KSoI"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1552248554965,
+			"modified": 1552290641982,
+			"name": "Testing",
+			"parentId": "env_d094f08a782d4e48868e635aa9f0678d",
+			"_type": "environment"
+		},
+		{
+			"_id": "req_d85f81315de8401991b2262e9d687a73",
+			"authentication": {},
+			"body": {},
+			"created": 1552248080936,
+			"description": "Login with identity and credentials.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249323307,
+			"method": "POST",
+			"modified": 1552290630120,
+			"name": "Login",
+			"parameters": [
+				{
+					"id": "pair_636163ea93e9457cb031f405ef12ed00",
+					"name": "email",
+					"value": "{{ user.email  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_dd20add37bf9492b8f4a1bcddacd8583",
+					"name": "email",
+					"value": "johndoe@email.com"
+				},
+				{
+					"disabled": false,
+					"id": "pair_41b61d1a0c5f460a86dc07add7d4dacd",
+					"name": "password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_79fd797b76d546a689755fffd0a3ebce",
+					"name": "password",
+					"value": "mynewpass"
+				}
+			],
+			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ auth_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a21c6baf04c34b5a89ec116f2ed64a15",
+			"authentication": {},
+			"body": {},
+			"created": 1552248759230,
+			"description": "Refresh authentication token.",
+			"headers": [
+				{
+					"id": "pair_a3119601dd8c4231ab99c181242ad2db",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249323282,
+			"method": "GET",
+			"modified": 1552288655598,
+			"name": "Refresh Token",
+			"parameters": [],
+			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ auth_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9251d6700e5946ac84e45143353d0afc",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": []
+			},
+			"created": 1552249233048,
+			"description": "Update current password.",
+			"headers": [
+				{
+					"id": "pair_eb8a8f39c1e541d28127e544f874a71a",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249323269.5,
+			"method": "PUT",
+			"modified": 1552290617650,
+			"name": "Update Password",
+			"parameters": [
+				{
+					"disabled": false,
+					"id": "pair_18818e22f56f4b3d8b2f87c83dbb0d97",
+					"name": "password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_cb90a0d7c3104858b5ae434708786e5a",
+					"name": "password",
+					"value": "mynewpass"
+				},
+				{
+					"disabled": true,
+					"id": "pair_955fbf20900c4557b6e181879e08c6d1",
+					"name": "new_password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": false,
+					"id": "pair_822ea884c0824c81ac2c0fbae05a2e62",
+					"name": "new_password",
+					"value": "mynewpass"
+				},
+				{
+					"disabled": true,
+					"id": "pair_df938c88ae0f47faabb474b3f06446d3",
+					"name": "confirm",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": false,
+					"id": "pair_f4b73ed8cb9f4ce295a552d2a5d12957",
+					"name": "confirm",
+					"value": "mynewpass"
+				}
+			],
+			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": false,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ auth_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b305b3f1f76c454b8c8ab4d1c0a3f746",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": []
+			},
+			"created": 1552249323257,
+			"description": "Send an account recovery email.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249323257,
+			"method": "PATCH",
+			"modified": 1552288664423,
+			"name": "Recover Account",
+			"parameters": [
+				{
+					"id": "pair_0cf66eec0cad40698936f6825c8cbac4",
+					"name": "email",
+					"value": "{{ user.email  }}"
+				}
+			],
+			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ auth_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_72e71c9212e04e33a62939ac8275193a",
+			"authentication": {},
+			"body": {},
+			"created": 1552249397777,
+			"description": "Delete account from database.",
+			"headers": [
+				{
+					"id": "pair_2ebc534f9eb34572bc5e9379740878f8",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552248080836,
+			"method": "DELETE",
+			"modified": 1552290701595,
+			"name": "Delete Account",
+			"parameters": [
+				{
+					"id": "pair_96c38861ab0f4f1ba182b20170ca6ea0",
+					"name": "password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_2a367ede497f423fbd9d63c3695d6a66",
+					"name": "password",
+					"value": "mynewpass"
+				}
+			],
+			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ auth_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d6dc621ebe5b44e09054e4bfe10f7a79",
+			"authentication": {},
+			"body": {},
+			"created": 1552249426994,
+			"description": "Create a new user account.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249426994,
+			"method": "POST",
+			"modified": 1552288675728,
+			"name": "Create User",
+			"parameters": [
+				{
+					"id": "pair_18e79f63e60945b1b7e5589a5136977b",
+					"name": "email",
+					"value": "{{ user.email  }}"
+				},
+				{
+					"id": "pair_f5e36185fbe84570b92e24e9e89951c7",
+					"name": "name",
+					"value": "{{ user.name  }}"
+				},
+				{
+					"id": "pair_565bc91853b041eb87a86d9c952043bc",
+					"name": "password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"id": "pair_0adff8e0f42f400da0985f63d8bb902a",
+					"name": "confirm",
+					"value": "{{ user.password  }}"
+				}
+			],
+			"parentId": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ user_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fa1caafa8b2d4c6c801aef94fd1bf1a8",
+			"authentication": {},
+			"body": {},
+			"created": 1552249501379,
+			"description": "Request user's profile.",
+			"headers": [
+				{
+					"id": "pair_3719c3843b554e1fa09c145df0859afd",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249426944,
+			"method": "GET",
+			"modified": 1552288681231,
+			"name": "Profile",
+			"parameters": [],
+			"parentId": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ user_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b1f7ee8e72b748c983ca79dff6288c8b",
+			"authentication": {},
+			"body": {},
+			"created": 1552249551924,
+			"description": "Update user's profile.",
+			"headers": [
+				{
+					"id": "pair_a49e214b9b9a441791baf34388ae1754",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249426894,
+			"method": "PUT",
+			"modified": 1552290233236,
+			"name": "Update Profile",
+			"parameters": [
+				{
+					"disabled": false,
+					"id": "pair_001ff10a3d45447a9e601c5019e3e7de",
+					"name": "name",
+					"value": "{{ user.name  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_91d8e449f1e04a17a5cee8ca48c6b77f",
+					"name": "name",
+					"value": "New Name"
+				}
+			],
+			"parentId": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ user_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9b5cdbd97fcc465d9e01521b2379bdd3",
+			"authentication": {},
+			"body": {},
+			"created": 1552249623373,
+			"description": "Change user's email.",
+			"headers": [
+				{
+					"id": "pair_5095b60365e24e64a824c607123ff318",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249426844,
+			"method": "PATCH",
+			"modified": 1552290415765,
+			"name": "Update Email",
+			"parameters": [
+				{
+					"disabled": true,
+					"id": "pair_247d2bee2e7c454dad8637291392207c",
+					"name": "new_email",
+					"value": "johndoe@email.com"
+				},
+				{
+					"disabled": false,
+					"id": "pair_82bed8f685b4469a9c2b78d23f0b56dd",
+					"name": "new_email",
+					"value": "{{ user.email  }}"
+				},
+				{
+					"id": "pair_c2747a53000c4a1781d00d481f2804dc",
+					"name": "password",
+					"value": "{{ user.password  }}"
+				},
+				{
+					"disabled": true,
+					"id": "pair_3d44727063ea4a52b98195d2a6c1e7e1",
+					"name": "password",
+					"value": "mynewpass"
+				}
+			],
+			"parentId": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ user_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_43810cfbf94942f6a19c15574dbfae20",
+			"authentication": {},
+			"body": {},
+			"created": 1552249681811,
+			"description": "Deactivate user account.",
+			"headers": [
+				{
+					"id": "pair_716264bbb82d4c9ea4f0d78f2d007c59",
+					"name": "Authorization",
+					"value": "{{ auth_token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552249426794,
+			"method": "DELETE",
+			"modified": 1552288697752,
+			"name": "Deactivate User",
+			"parameters": [],
+			"parentId": "fld_64a2e0ebdf67405c8807d96bb90c2eb1",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ user_endpoint  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7423cb38719d4d99ab8464487accbf26",
+			"authentication": {},
+			"body": {},
+			"created": 1552249716482,
+			"description": "Confirm user registration via token sent in email.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249716482,
+			"method": "POST",
+			"modified": 1552262021058,
+			"name": "Confirm User Registration",
+			"parameters": [
+				{
+					"id": "pair_ce7bc5e7f3924acc9f4bf8940870fe5b",
+					"name": "token",
+					"value": "{{ validation_token  }}"
+				}
+			],
+			"parentId": "fld_b3cfb5298cd2409b89103a4d23fff717",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirm",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fde2bec1cab343e5b69f049ca180c37b",
+			"authentication": {},
+			"body": {},
+			"created": 1552249874887,
+			"description": "Confirm password reset with token via account recovery email.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249874887,
+			"method": "POST",
+			"modified": 1552262048327,
+			"name": "Validate Password Reset",
+			"parameters": [
+				{
+					"id": "pair_2d3bbb448ffd4b12b4025d7ddf12e704",
+					"name": "token",
+					"value": "{{ validation_token  }}"
+				},
+				{
+					"id": "pair_289d252094044c849777241f370e2011",
+					"name": "new_password",
+					"value": "mynewpass"
+				},
+				{
+					"id": "pair_d2fa349708df48fdb8aadf62c26d9d80",
+					"name": "confirm",
+					"value": "mynewpass"
+				}
+			],
+			"parentId": "fld_b3cfb5298cd2409b89103a4d23fff717",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/reset",
+			"_type": "request"
+		},
+		{
+			"_id": "req_db6072a24e6741a8a78d66fe62cabf35",
+			"authentication": {},
+			"body": {},
+			"created": 1552249990339,
+			"description": "Re-send user confirmation email.",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1552249716432,
+			"method": "PUT",
+			"modified": 1552285204769,
+			"name": "Resend Confirmation",
+			"parameters": [
+				{
+					"id": "pair_21503dfa2e82450ba3eba6d2ccffda9d",
+					"name": "email",
+					"value": "{{ user.email  }}"
+				},
+				{
+					"id": "pair_aab00b3001da4a37b88e2fb371da6f21",
+					"name": "",
+					"value": ""
+				}
+			],
+			"parentId": "fld_b3cfb5298cd2409b89103a4d23fff717",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirm",
+			"_type": "request"
+		}
+	]
+}
