@@ -20,12 +20,20 @@ PasswordConfirmationInvalid = ApiError(401, 'Passwords do not match')
 
 AccountNotActive = ApiError(401, 'User account not active')
 
-NoUpdatesToMake = ApiError(401, 'No updates made')
+NoUpdatesToMake = ApiError(401, 'No updates to make')
 
 UserCreationFailure = ApiError(500, 'Could not create user')
 
 CouldNotSendEmail = ApiError(500, 'Server could not process email request')
 
+UserConfirmationRequired = ApiError(400, 'Please confirm your account')
+
+MissingValidatorAction = ApiError(500, 'Missing validator action type')
+
 InvalidToken = ApiError(400, 'Invalid validation token')
 
+AccountNotActive = ApiError(401, 'Account is deactivated login to reactivate')
+
 UserAlreadyConfirmed = ApiError(401, 'Account already confirmed')
+
+InvalidPassword = ApiError(401, 'Password is incorrect')
