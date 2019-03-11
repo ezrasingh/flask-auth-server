@@ -2,18 +2,28 @@
 
 This project is designed to be an *Identity Access Management* (IAM) solution focused around **token based** authentication and authorization. The goal of this software is to securely provide access to protected user resources over a REST API.
 
-### API Endpoints
+### API Summary
 
 - */api/authenticate*
-    - **GET** - Refresh authorization token *
-    - **POST** - Login with identity and credentials
+    - **GET** - Refresh Token *
+    - **POST** - Login
+    - **PUT** - Update Password *
+    - **PATCH** - Recover Account
+    - **DELETE** - Delete Account *
 - */api/user*
-    - **GET** - Request user's profile *
-    - **POST** - Create a new user
-    - **PUT** - Update user's profiles *
-    - **DELETE** - Deactivate user account
+    - **GET** - Profile *
+    - **POST** - Create User
+    - **PUT** - Update Profiles *
+    - **PATCH** - Update Email *
+    - **DELETE** - Deactivate User *
+- */api/validate*
+    - */confirm*
+        - **POST** - Confirm User Confirmation
+        - **PUT** - Re-send User Confirmation
+    - */reset*
+        - **POST** - Validate Password Reset
 
-`* - Requires authentication via JWT`
+`* - Requires auth token`
 
 ## Development
 I would recommend developing within a **virtualenv** preferably via *[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)*.
