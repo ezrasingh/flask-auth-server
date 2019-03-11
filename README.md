@@ -2,18 +2,28 @@
 
 This project is designed to be an *Identity Access Management* (IAM) solution focused around **token based** authentication and authorization. The goal of this software is to securely provide access to protected user resources over a REST API.
 
-### API Endpoints
+### API Summary
 
 - */api/authenticate*
-    - **GET** - Refresh authorization token *
-    - **POST** - Login with identity and credentials
+    - **GET** - Refresh Token *
+    - **POST** - Login
+    - **PUT** - Update Password *
+    - **PATCH** - Recover Account
+    - **DELETE** - Delete Account *
 - */api/user*
-    - **GET** - Request user's profile *
-    - **POST** - Create a new user
-    - **PUT** - Update user's profiles *
-    - **DELETE** - Deactivate user account
+    - **GET** - Profile *
+    - **POST** - Create User
+    - **PUT** - Update Profiles *
+    - **PATCH** - Update Email *
+    - **DELETE** - Deactivate User *
+- */api/validate*
+    - */confirm*
+        - **POST** - Confirm User Confirmation
+        - **PUT** - Re-send User Confirmation
+    - */reset*
+        - **POST** - Validate Password Reset
 
-`* - Requires authentication via JWT`
+`* - Requires auth token`
 
 ## Development
 I would recommend developing within a **virtualenv** preferably via *[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)*.
@@ -22,9 +32,11 @@ Install application dependencies:
 
 `pip install -r requirements.txt`
 
-Run coverage tests:
+Run tests:
 
-`python -m pytest tests/`
+`python -m pytest tests/ --disable-warnings`
+
+* *Disabling warnings is optional*
 
 Start application in development mode:
 
@@ -32,15 +44,36 @@ Start application in development mode:
 
 ### Migrations
 
-Generate migrations:
+Initialize database migrations:
 
 `flask db init`
+
+Generate new migrations:
+
+`flask db migrate`
 
 Upgrade and downgrade the schema using:
 
 `flask db upgrade`
 
 `flask db downgrade`
+
+### Emails
+
+* [Mailtrap](https://mailtrap.io/) is preferred for **development** and **API testing**.
+
+Update the SMTP server parameters in [`.env`](.env) for *development* and *testing*.
+
+For *staging* and *production* feel free to use any SMTP service of your choice, just set the SMTP server parameters within their respective environment keys. 
+
+* *Reference [`.env`](.env) for appropriate keys.*
+
+### API Testing
+
+* [Insomnia](https://insomnia.rest/) is required for API testing
+
+Import [`api.insomnia.json`](api.insomnia.json), use **Testing** environment.
+
 
 ## Staging
 
@@ -53,7 +86,7 @@ Build or start the staging environment using:
 `docker-compose up`
 
 **NOTE** :
-*Staging is the preferred environment for frontend development*
+*Staging is the preferred environment for frontend development, be sure to configure **CLIENT_ORIGIN** in [`docker-compose.yml`](docker-compose.yml)*.
 
 ### Running in Windows
 

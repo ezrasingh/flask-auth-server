@@ -9,6 +9,7 @@ pytest
 bcrypt
 python-dotenv
 validate_email
+flask-emails
 flask-restful
 flask-security
 flask-cors

@@ -15,9 +15,16 @@ services:
       PASSWORD_SALT: ^CPe?g2&GQ
       SECRET_KEY: bH?UuPg5#9E%S?q2pD25!$EE84_Qq%DU
       CLIENT_ORIGIN: 
+      EMAIL_HOST: smtp.mailtrap.io
+      EMAIL_PORT: 25
+      EMAIL_USERNAME: 9853143411f3d9
+      EMAIL_PASSWORD: e8bc5566c48d1c
+      EMAIL_TIMEOUT: 10
+      MAIL_SENDER: mailer@flaskauth.staging.app
   db:
     image: postgres:9.6.2-alpine
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: staging
+

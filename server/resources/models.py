@@ -21,9 +21,10 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(256), unique=True, nullable=False)
     password_hash = db.Column(db.String(64), nullable=False)
-    active = db.Column(db.Boolean, default=True)
+    active = db.Column(db.Boolean, default=False)
     profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+    confirmed_at = db.Column(db.DateTime, nullable=True)
     
     def __init__(self, email, password, **kwargs):
         self.email = email
@@ -43,7 +44,7 @@ class User(UserMixin, db.Model):
     @hybrid_method
     def authorize(self, credentials):
         return verify_password(credentials, self.password_hash)
-    
+        
     @validates('email')
     def validate_identity(self, key, address):
         assert validate_email(address)
