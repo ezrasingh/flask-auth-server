@@ -23,3 +23,9 @@ AccountNotActive = ApiError(401, 'User account not active')
 NoUpdatesToMake = ApiError(401, 'No updates made')
 
 UserCreationFailure = ApiError(500, 'Could not create user')
+
+CouldNotSendEmail = ApiError(500, 'Server could not process email request')
+
+InvalidToken = ApiError(400, 'Invalid validation token')
+
+UserAlreadyConfirmed = ApiError(401, 'Account already confirmed')
