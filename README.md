@@ -52,6 +52,23 @@ Upgrade and downgrade the schema using:
 
 `flask db downgrade`
 
+### Emails
+
+* [Mailtrap](https://mailtrap.io/) is preferred for **development** and **API testing**.
+
+Update the SMTP server parameters in [`.env`](.env) for *development* and *testing*.
+
+For *staging* and *production* feel free to use any SMTP service of your choice, just set the SMTP server parameters within their respective environment keys. 
+
+* *Reference [`.env`](.env) for appropriate keys.*
+
+### API Testing
+
+* [Insomnia](https://insomnia.rest/) is required for API testing
+
+Import [`api.insomnia.json`](api.insomnia.json), use **Testing** environment.
+
+
 ## Staging
 
 * [Docker](https://www.docker.com/get-started) is required for staging
