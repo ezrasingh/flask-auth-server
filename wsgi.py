@@ -18,8 +18,8 @@ except:
 ''' Generate validation testing for API testing with emails '''
 @app.cli.command()
 @click.option('--validation-token', default=True, help='Token for confirmation and recovery, for use in API testing')
-@click.option('--email', default='tester@user.com', help='Email of user')
-def generate(email='tester@user.com', **kwargs):
+@click.option('--email', help='Email of user')
+def generate(email, **kwargs):
     print("email : ", email)
     print("validation_token : ", Serializer.generate_token(email))
 
