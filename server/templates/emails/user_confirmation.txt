@@ -1,0 +1,2 @@
+Follow the link to complete registration: 
+{{ client }}{{ confirm_url }}?token={{ token }}
