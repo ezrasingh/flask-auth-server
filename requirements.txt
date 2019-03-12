@@ -5,6 +5,7 @@ Flask-SQLAlchemy
 Flask-Migrate
 # Testing
 pytest
+pytest-env
 # utils
 bcrypt
 python-dotenv

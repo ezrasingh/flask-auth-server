@@ -34,7 +34,11 @@ Install application dependencies:
 
 Run tests:
 
-`python -m pytest tests/ --disable-warnings`
+`pytest`
+
+Or more *stringently*:
+
+`python -m pytest tests/`
 
 * *Disabling warnings is optional*
 
