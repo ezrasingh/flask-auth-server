@@ -9,11 +9,10 @@ security = Security()
 api = Api()
 
 ''' User store '''
-import server.resources.models as models
-
+from server.resources import models
 user_store = SQLAlchemyUserDatastore(db, models.User, models.Role)
 
 ''' Api endpoints '''
 from server.api.auth import Authentication
 from server.api.user import User
-from server.api.validation import Validation
+from server.api.validation import ConfirmationValidation, RecoveryValidation

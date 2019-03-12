@@ -27,7 +27,7 @@ class Serializer():
     serializer = URLSafeTimedSerializer(os.getenv('SECRET_KEY'))
 
     @staticmethod
-    def generate_token(email):
+    def generate_token(email, **kwargs):
         return Serializer.serializer.dumps(
             email, 
             salt=os.getenv('PASSWORD_SALT')

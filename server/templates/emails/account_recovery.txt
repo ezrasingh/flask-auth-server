@@ -1,2 +1,2 @@
 Follow the link to recover account:
-{{ client }}{{ recover_url }}?token={{ token }}
+{{ client }}{{ recover_url }}/{{ token }}

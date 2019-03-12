@@ -56,12 +56,12 @@ class Authentication(Resource):
         args = self.parser['post'].parse_args()
         return login(**args)
     
-    ''' Update password '''
+    ''' Reset password '''
     @auth_token_required
     def put(self):
         args = self.parser['put'].parse_args()
         if args['new_password'] != args['confirm']:
-            return errors.InvalidCredentials()
+            return errors.PasswordConfirmationInvalid()
 
         if current_user.authorize(args['password']):
             current_user.password = args['new_password']
