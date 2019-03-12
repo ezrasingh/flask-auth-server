@@ -17,10 +17,10 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
     - **PATCH** - Update Email *
     - **DELETE** - Deactivate User *
 - */api/validate*
-    - */confirm*
+    - */confirmation*
         - **POST** - Confirm User Confirmation
         - **PUT** - Re-send User Confirmation
-    - */reset*
+    - */recovery*
         - **POST** - Validate Password Reset
 
 `* - Requires auth token`
@@ -76,7 +76,7 @@ For *staging* and *production* feel free to use any SMTP service of your choice,
 
 * [Insomnia](https://insomnia.rest/) is required for API testing
 
-Import [`api.insomnia.json`](api.insomnia.json), use **Testing** environment.
+Import [`api.json`](api.json), use **Testing** environment.
 
 
 ## Staging
@@ -106,7 +106,7 @@ If you are using [MinGW](http://www.mingw.org/) or happen to have `grep` install
 
 Then, test the access to container, after `docker-compose up` use the IP address from the previous step:
 
-`curl http://<docker-machine-ip>:5000/api/profile`
+`curl http://<docker-machine-ip>:5000/api/auth`
 
 You should receive a JSON response from the Dockerized API.
 

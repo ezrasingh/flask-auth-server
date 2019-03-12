@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-03-11T07:52:17.971Z",
+	"__export_date": "2019-03-12T19:49:49.529Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -199,8 +199,8 @@
 			"isPrivate": false,
 			"metaSortKey": -1552249323269.5,
 			"method": "PUT",
-			"modified": 1552290617650,
-			"name": "Update Password",
+			"modified": 1552400965048,
+			"name": "Reset Password",
 			"parameters": [
 				{
 					"disabled": false,
@@ -237,6 +237,11 @@
 					"id": "pair_f4b73ed8cb9f4ce295a552d2a5d12957",
 					"name": "confirm",
 					"value": "mynewpass"
+				},
+				{
+					"id": "pair_f5a6d1967c1441c6be94a6a677e2a351",
+					"name": "",
+					"value": ""
 				}
 			],
 			"parentId": "fld_0c5bd68d800247e78fcb74192689f94d",
@@ -529,7 +534,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1552249716482,
 			"method": "POST",
-			"modified": 1552262021058,
+			"modified": 1552412396941,
 			"name": "Confirm User Registration",
 			"parameters": [
 				{
@@ -545,7 +550,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirm",
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirmation",
 			"_type": "request"
 		},
 		{
@@ -556,10 +561,10 @@
 			"description": "Confirm password reset with token via account recovery email.",
 			"headers": [],
 			"isPrivate": false,
-			"metaSortKey": -1552249874887,
+			"metaSortKey": -1552249716382,
 			"method": "POST",
-			"modified": 1552262048327,
-			"name": "Validate Password Reset",
+			"modified": 1552412386727,
+			"name": "Validate Account Recovery",
 			"parameters": [
 				{
 					"id": "pair_2d3bbb448ffd4b12b4025d7ddf12e704",
@@ -584,7 +589,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ base_url  }}{{ validate_endpoint  }}/reset",
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/recovery",
 			"_type": "request"
 		},
 		{
@@ -597,7 +602,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1552249716432,
 			"method": "PUT",
-			"modified": 1552285204769,
+			"modified": 1552412393028,
 			"name": "Resend Confirmation",
 			"parameters": [
 				{
@@ -618,7 +623,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirm",
+			"url": "{{ base_url  }}{{ validate_endpoint  }}/confirmation",
 			"_type": "request"
 		}
 	]
