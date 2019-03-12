@@ -4,7 +4,10 @@ services:
     tty: true
     build: .
     restart: always
-    command: flask run --host 0.0.0.0 --port 5000
+    command: >
+      sh -c "flask db stamp head &&
+             flask db upgrade &&
+             flask run --host 0.0.0.0 --port 5000"
     ports:
       - "5000:5000"
     depends_on:
@@ -14,13 +17,14 @@ services:
       DATABASE_URL: postgresql+psycopg2://admin:password@db:5432/staging
       PASSWORD_SALT: ^CPe?g2&GQ
       SECRET_KEY: bH?UuPg5#9E%S?q2pD25!$EE84_Qq%DU
-      CLIENT_ORIGIN: 
+      CLIENT_ORIGIN: http://localhost:3000 
       EMAIL_HOST: smtp.mailtrap.io
-      EMAIL_PORT: 25
+      EMAIL_PORT: 2525
       EMAIL_USERNAME: 9853143411f3d9
       EMAIL_PASSWORD: e8bc5566c48d1c
       EMAIL_TIMEOUT: 10
       MAIL_SENDER: mailer@flaskauth.staging.app
+      DEVELOPER_EMAIL: dev@flaskauth.staging.app
   db:
     image: postgres:9.6.2-alpine
     environment:
