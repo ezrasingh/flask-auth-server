@@ -26,5 +26,6 @@ def create_app(mode):
     app.register_blueprint(router)
     with app.app_context():
         db.init_app(app)
+        db.create_all()
         security.init_app(app, user_store)
     return app

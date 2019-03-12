@@ -24,6 +24,8 @@ class ConfirmationValidation(Resource):
     def post(self):
         args = self.parser['post'].parse_args()
         email = Serializer.confirm_token(args['token'])
+        if not email:
+            return errors.InvalidToken()
         user = user_store.find_user(email=email)
         if user:
             user_store.activate_user(user)
@@ -64,6 +66,8 @@ class RecoveryValidation(Resource):
     def post(self):
         args = self.parser['post'].parse_args()
         email = Serializer.confirm_token(args['token'])
+        if not email:
+            return errors.InvalidToken()
         user = user_store.find_user(email=email)
         if user:
             if args['new_password'] == args['confirm']:
