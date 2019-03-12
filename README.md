@@ -7,7 +7,7 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
 - */api/authenticate*
     - **GET** - Refresh Token *
     - **POST** - Login
-    - **PUT** - Update Password *
+    - **PUT** - Reset Password *
     - **PATCH** - Recover Account
     - **DELETE** - Delete Account *
 - */api/user*
@@ -21,7 +21,7 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
         - **POST** - Confirm User Confirmation
         - **PUT** - Re-send User Confirmation
     - */recovery*
-        - **POST** - Validate Password Reset
+        - **POST** - Password Reset for Account Recovery
 
 `* - Requires auth token`
 
@@ -40,7 +40,7 @@ Or more *stringently*:
 
 `python -m pytest tests/`
 
-* *Disabling warnings is optional*
+* *Configure test options in [`pytest.ini`](pytest.ini)*
 
 Start application in development mode:
 
@@ -62,6 +62,12 @@ Upgrade and downgrade the schema using:
 
 `flask db downgrade`
 
+To use the most recent migration *(preferred)*:
+
+`flask db stamp head`
+
+`flask db upgrade`
+
 ### Emails
 
 * [Mailtrap](https://mailtrap.io/) is preferred for **development** and **API testing**.
@@ -76,7 +82,7 @@ For *staging* and *production* feel free to use any SMTP service of your choice,
 
 * [Insomnia](https://insomnia.rest/) is required for API testing
 
-Import [`api.json`](api.json), use **Testing** environment.
+Import [`api.json`](api.json) and use the **Testing** environment.
 
 
 ## Staging
@@ -85,7 +91,7 @@ Import [`api.json`](api.json), use **Testing** environment.
 
 Build or start the staging environment using:
 
-`docker-compose up --build`
+`docker-compose build`
 
 `docker-compose up`
 
