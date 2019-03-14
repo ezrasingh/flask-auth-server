@@ -49,7 +49,8 @@ def test_validate_account_recovery(api, register, mock_user):
     res = api.post("/api/validate/recovery", data=payload)
     assert res.status_code == 401, "should deny if new passwords do not match"
     assert res.json == errors.PasswordConfirmationInvalid, "should prompt error"
+    
     ''' Reset password and recover account '''
     payload['confirm'] = 'newpass'
     res = api.post("/api/validate/recovery", data=payload)
-    assert res
+    assert res.status_code == 200, "should allow operation"
