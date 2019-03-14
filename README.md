@@ -84,6 +84,9 @@ For *staging* and *production* feel free to use any SMTP service of your choice,
 
 Import [`api.json`](api.json) and use the **Testing** environment.
 
+To generate validation tokens for emulating email based confirmation use:
+
+`flask generate --validation-token <email>`
 
 ## Staging
 
