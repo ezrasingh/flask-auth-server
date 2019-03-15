@@ -39,13 +39,22 @@ def test_update_profile(api, register, mock_user):
     assert res.json['profile']['name'] == 'New Name', "should update profile name"
 
 def test_update_email(api, register, mock_user):
-    ''' Update user email '''
+    ''' Update user email with wrong password '''
     user = register(**mock_user, confirmed=True)
     headers = { 'Authorization' : user.get_auth_token() }
-    payload = { 'new_email' : 'newemail@mail.com', 'password' : mock_user['password'] }
+    payload = { 'new_email' : 'newemail@mail.com', 'password' : 'wrongpass' }
+    res = api.patch("/api/user", data=payload, headers=headers)
+    assert res.status_code == 401, "should deny operation"
+    assert res.json == errors.InvalidPassword, "should prompt error"
+    ''' Update user email '''
+    payload['password'] = mock_user['password']
     res = api.patch("/api/user", data=payload, headers=headers)
     assert res.status_code == 200, "should allow operation"
     assert res.json['email'] == 'newemail@mail.com', "should update email"
+    ''' Update user email to an existing email '''
+    res = api.patch("/api/user", data=payload, headers=headers)
+    assert res.status_code == 401, "should deny operation"
+    assert res.json == errors.UserAlreadyExist, "should prompt error"
 
 def test_deactivate_user(api, register, mock_user):
     ''' Deactivate user account '''

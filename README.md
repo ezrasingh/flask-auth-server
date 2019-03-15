@@ -4,7 +4,7 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
 
 ### API Summary
 
-- */api/authenticate*
+- */api/auth*
     - **GET** - Refresh Token *
     - **POST** - Login
     - **PUT** - Reset Password *
