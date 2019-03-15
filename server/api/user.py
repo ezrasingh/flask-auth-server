@@ -48,7 +48,6 @@ class User(Resource):
         if args['password'] != args['confirm']:
             return errors.PasswordConfirmationInvalid()
 
-        #try:
         user = user_store.create_user(email=args['email'], password=args['password'])
         profile = Profile(user=user, name=args['name'])
         msg = send_confirmation_email(args['email'], args['name'])
@@ -58,24 +57,21 @@ class User(Resource):
             db.session.commit()
             logout_user()
             return { 'user' :  user.email  }
-        #except Er:
-        #    return errors.UserCreationFailure()
 
     ''' Change user's email '''
     @auth_token_required
     @user_is_active
     def patch(self):
         args = self.parser['patch'].parse_args()
-
-        if user_store.find_user(email=args['new_email']):
-            return errors.NoUpdatesToMake()
-
         if current_user.authorize(args['password']):
-            current_user.email = args['new_email']
-            db.session.commit()
-            return { 'email': current_user.email }
+            if user_store.find_user(email=args['new_email']):
+                return errors.UserAlreadyExist()
+            else:
+                current_user.email = args['new_email']
+                db.session.commit()
+                return { 'email': current_user.email }
         else:
-            return errors.InvalidCredentials()
+            return errors.InvalidPassword()
 
     ''' Update user's profile '''
     @auth_token_required
