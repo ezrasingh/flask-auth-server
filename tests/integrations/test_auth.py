@@ -35,16 +35,23 @@ def test_refresh_token(api, headers, register, mock_user):
     assert res.status_code == 200, "should allow refresh"
     assert 'token' in res.json, "should return new token"
 
-def test_recover_account(api, register, mock_user):
+def test_recover_account_defelection(api, register, mock_user):
     ''' Request account recovery of non-existing user '''
     res = api.patch("/api/auth", data=mock_user)
     assert res.status_code == 401, "should deny request"
     assert res.json == errors.InvalidCredentials, "should prompt error"
 
-    ''' Request account recovery of existing user '''
+    ''' Request account recovery of existing un-confirmed user '''
     user = register(**mock_user)
     res = api.patch("/api/auth", data=mock_user)
-    assert res.status_code == 200, "should send confirmation email"
+    assert res.status_code == 400, "should deny operation"
+    assert res.json == errors.UserConfirmationRequired, "should prompt error"
+
+def test_recover_account(api, register, mock_user):
+    ''' Request account recovery of existing confirmed user '''
+    user = register(**mock_user, confirmed=True)
+    res = api.patch("/api/auth", data=mock_user)
+    assert res.status_code == 200, "should allow operation"
 
 def test_reset_password(api, session, register, mock_user):
     ''' Reset user password with wrong password '''
