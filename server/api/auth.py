@@ -56,12 +56,12 @@ class Authentication(Resource):
         args = self.parser['post'].parse_args()
         return login(**args)
     
-    ''' Update password '''
+    ''' Reset password '''
     @auth_token_required
     def put(self):
         args = self.parser['put'].parse_args()
         if args['new_password'] != args['confirm']:
-            return errors.InvalidCredentials()
+            return errors.PasswordConfirmationInvalid()
 
         if current_user.authorize(args['password']):
             current_user.password = args['new_password']
@@ -73,7 +73,10 @@ class Authentication(Resource):
     ''' Recover account '''
     def patch(self):
         args = self.parser['patch'].parse_args()
-        if user_store.find_user(email=args['email']):
+        user =  user_store.find_user(email=args['email'])
+        if user:
+            if not user.confirmed_at:
+                return errors.UserConfirmationRequired()
             msg = send_recovery_email(args['email'])
             if msg.status_code in [ 250 ]:
                 return { 'message': 'Recovery link sent' }

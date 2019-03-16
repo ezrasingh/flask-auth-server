@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
-from server.resources import db
-from sqlalchemy.orm import validates, backref
+from sqlalchemy import Table, Column, Integer, String, Boolean, ForeignKey, DateTime
+from sqlalchemy.orm import validates, backref, relationship
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from flask_security import UserMixin, RoleMixin
 from flask_security.utils import hash_password, verify_password
 from validate_email import validate_email
+from server.resources import db
 
 roles_users = db.Table(
     'roles_users',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
+    Column('user_id', Integer, ForeignKey('user.id')),
+    Column('role_id', Integer, ForeignKey('role.id'))
 )
 
 class Role(RoleMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
+    id = Column(Integer, primary_key=True)
+    name = Column(String(80), unique=True)
+    description = Column(String(255))
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(256), unique=True, nullable=False)
-    password_hash = db.Column(db.String(64), nullable=False)
-    active = db.Column(db.Boolean, default=False)
-    profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
-    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
-    confirmed_at = db.Column(db.DateTime, nullable=True)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(256), unique=True, nullable=False)
+    password_hash = Column(String(64), nullable=False)
+    active = Column(Boolean, default=False)
+    profile_id = Column(Integer, ForeignKey('profile.id'))
+    roles = relationship('Role', secondary=roles_users, backref=backref('users', lazy='dynamic'))
+    confirmed_at = Column(DateTime, nullable=True)
     
     def __init__(self, email, password, **kwargs):
         self.email = email
@@ -51,9 +53,9 @@ class User(UserMixin, db.Model):
         return address
 
 class Profile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    user = db.relationship("User", backref='profile', uselist=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    user = relationship("User", backref='profile', uselist=False)
 
     def __repr__(self):
         return "<Profile {}:{}>".format(self.id, self.name)

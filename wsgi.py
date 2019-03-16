@@ -20,7 +20,6 @@ except:
 @click.option('--validation-token', default=True, help='Token for confirmation and recovery, for use in API testing')
 @click.option('--email', help='Email of user')
 def generate(email, **kwargs):
-    print("email : ", email)
     print("validation_token : ", Serializer.generate_token(email))
 
 if __name__ == '__main__':

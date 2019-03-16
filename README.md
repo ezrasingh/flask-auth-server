@@ -4,10 +4,10 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
 
 ### API Summary
 
-- */api/authenticate*
+- */api/auth*
     - **GET** - Refresh Token *
     - **POST** - Login
-    - **PUT** - Update Password *
+    - **PUT** - Reset Password *
     - **PATCH** - Recover Account
     - **DELETE** - Delete Account *
 - */api/user*
@@ -17,11 +17,11 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
     - **PATCH** - Update Email *
     - **DELETE** - Deactivate User *
 - */api/validate*
-    - */confirm*
+    - */confirmation*
         - **POST** - Confirm User Confirmation
         - **PUT** - Re-send User Confirmation
-    - */reset*
-        - **POST** - Validate Password Reset
+    - */recovery*
+        - **POST** - Password Reset for Account Recovery
 
 `* - Requires auth token`
 
@@ -34,9 +34,13 @@ Install application dependencies:
 
 Run tests:
 
-`python -m pytest tests/ --disable-warnings`
+`pytest`
 
-* *Disabling warnings is optional*
+Or more *stringently*:
+
+`python -m pytest tests/`
+
+* *Configure test options in [`pytest.ini`](pytest.ini)*
 
 Start application in development mode:
 
@@ -58,6 +62,12 @@ Upgrade and downgrade the schema using:
 
 `flask db downgrade`
 
+To use the most recent migration *(preferred)*:
+
+`flask db stamp head`
+
+`flask db upgrade`
+
 ### Emails
 
 * [Mailtrap](https://mailtrap.io/) is preferred for **development** and **API testing**.
@@ -72,8 +82,11 @@ For *staging* and *production* feel free to use any SMTP service of your choice,
 
 * [Insomnia](https://insomnia.rest/) is required for API testing
 
-Import [`api.insomnia.json`](api.insomnia.json), use **Testing** environment.
+Import [`api.json`](api.json) and use the **Testing** environment.
 
+To generate validation tokens for emulating email based confirmation use:
+
+`flask generate --validation-token <email>`
 
 ## Staging
 
@@ -81,7 +94,7 @@ Import [`api.insomnia.json`](api.insomnia.json), use **Testing** environment.
 
 Build or start the staging environment using:
 
-`docker-compose up --build`
+`docker-compose build`
 
 `docker-compose up`
 
@@ -102,7 +115,7 @@ If you are using [MinGW](http://www.mingw.org/) or happen to have `grep` install
 
 Then, test the access to container, after `docker-compose up` use the IP address from the previous step:
 
-`curl http://<docker-machine-ip>:5000/api/profile`
+`curl http://<docker-machine-ip>:5000/api/auth`
 
 You should receive a JSON response from the Dockerized API.
 

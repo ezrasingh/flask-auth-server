@@ -7,7 +7,7 @@ FROM Base as Installer
 
 RUN \
     apk add --no-cache libffi-dev postgresql-libs && \
-    apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev
+    apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev libxslt-dev
 
 COPY requirements.txt /usr/src
 
@@ -20,6 +20,9 @@ ADD ./server /usr/src/server
 ADD ./migrations /usr/src/migrations
 ADD ./tests /usr/src/tests
 
+COPY pytest.ini /usr/src
 COPY wsgi.py /usr/src
 
-CMD [ "python", "-m", "pytest", "tests/", "--disable-warnings", "--clear-cache" ]
+# NOTE: Migrations should be built during development
+
+CMD [ "python", "-m", "pytest", "tests/", "--clear-cache" ]
