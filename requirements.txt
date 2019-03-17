@@ -16,4 +16,4 @@ flask-security
 flask-cors
 # Deployment
 gunicorn
-psycopg2
+psycopg2-binary
