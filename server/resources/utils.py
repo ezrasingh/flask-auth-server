@@ -23,6 +23,7 @@ def login_required(f):
             return f(*args, **kwargs)
     return wrapper
 
+''' Generate authentication tokens for email confirmation process '''
 class Serializer():
     serializer = URLSafeTimedSerializer(os.getenv('SECRET_KEY'))
 
