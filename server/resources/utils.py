@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-import os
+import os, sys
 from itsdangerous import URLSafeTimedSerializer
 from flask_restful import abort
 from flask_security import current_user
-from server.resources import errors
+from server.resources import errors, db
+
+''' Check if database is available on network '''
+def db_available():
+    try:
+        session = db.create_scoped_session()
+        session.execute('SELECT 1')
+        return True, "Database OK!"
+    except Exception as e:
+        return False, str(e)
 
 ''' Decorator to deflect request from deactivated users '''
 def user_is_active(f):
@@ -23,6 +32,7 @@ def login_required(f):
             return f(*args, **kwargs)
     return wrapper
 
+''' Generate authentication tokens for email confirmation process '''
 class Serializer():
     serializer = URLSafeTimedSerializer(os.getenv('SECRET_KEY'))
 
@@ -44,3 +54,12 @@ class Serializer():
             return email
         except:
             return False
+        
+''' Application metadata '''
+def app_data():
+	return {
+        "maintainer": "Ezra Singh",
+        "email": "singhezra@gmail.com",
+	    "git_repo": "https://github.com/EzraSingh/flask-auth-server",
+        "python": sys.version
+    }

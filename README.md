@@ -22,6 +22,8 @@ This project is designed to be an *Identity Access Management* (IAM) solution fo
         - **PUT** - Re-send User Confirmation
     - */recovery*
         - **POST** - Password Reset for Account Recovery
+- */status* - Server healthcheck
+- */env* - Application metadata
 
 `* - Requires auth token`
 
