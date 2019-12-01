@@ -8,6 +8,7 @@ db = SQLAlchemy()
 security = Security()
 api = Api()
 
+
 ''' User store '''
 from server.resources import models
 user_store = SQLAlchemyUserDatastore(db, models.User, models.Role)
